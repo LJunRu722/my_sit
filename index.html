@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>刘俊儒 · 个人简介 | Люй Жун Жу · Хүлэн Буйр</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%231B3A2F'/><text x='50' y='65' font-size='48' text-anchor='middle' fill='%23F5F1E8' font-family='serif' font-weight='bold'>刘</text></svg>">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Sans+Mongolian&display=swap">
+<style>
+  :root {
+    --pine: #1B3A2F;
+    --pine-light: #2C5544;
+    --cream: #F5F1E8;
+    --cream-dark: #EDE6D6;
+    --sky: #4A90A4;
+    --amber: #D4956A;
+    --ink: #1F2937;
+    --ink-light: #4B5563;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* 蒙文样式 */
+  .mn {
+    font-family: 'Noto Sans Mongolian', 'Mongolian Baiti', 'Menk Hawg', serif;
+    font-weight: 400;
+    display: block;
+    margin-top: 6px;
+    opacity: 0.82;
+    letter-spacing: 0.04em;
+    line-height: 1.6;
+  }
+  .hero-content .mn { font-size: 0.55em; opacity: 0.9; }
+  .section-label .mn, .section-label { letter-spacing: 3px; }
+
+  /* ===== 开场动画 ===== */
+  .intro-overlay {
+    position: fixed; inset: 0; z-index: 999;
+    background: #000;
+    display: flex; align-items: center; justify-content: center;
+    transition: opacity 1.1s ease;
+  }
+  .intro-overlay.done { opacity: 0; pointer-events: none; }
+  .intro-overlay video {
+    width: 100%; height: 100%;
+    object-fit: contain; display: block;
+    background: #000;
+  }
+  .intro-skip {
+    position: absolute; bottom: 28px; right: 32px;
+    color: rgba(255,255,255,0.55); font-size: 12px;
+    letter-spacing: 2px; cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 6px 16px; border-radius: 20px;
+    background: transparent; font-family: inherit;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .intro-skip:hover { color: #fff; border-color: rgba(255,255,255,0.7); }
+
+  /* ===== Hero ===== */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: url('https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/Eyktbvk53oNUWjxgWTEcuYeBnre') center/cover no-repeat;
+    animation: kenBurns 28s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+  @keyframes kenBurns {
+    from { transform: scale(1.05) translate(0, 0); }
+    to { transform: scale(1.18) translate(-1.5%, -2%); }
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(27,58,47,0.25) 0%, rgba(27,58,47,0.55) 100%);
+    animation: overlayPulse 8s ease-in-out infinite;
+  }
+  @keyframes overlayPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.85; }
+  }
+
+  /* 漂浮金色光斑 */
+  .particles {
+    position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none;
+  }
+  .particle {
+    position: absolute;
+    bottom: -10px;
+    width: 4px; height: 4px;
+    background: rgba(255, 215, 150, 0.8);
+    border-radius: 50%;
+    box-shadow: 0 0 8px 2px rgba(255, 200, 120, 0.5);
+    animation: floatUp linear infinite;
+  }
+  @keyframes floatUp {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    10% { opacity: 0.9; }
+    90% { opacity: 0.6; }
+    100% { transform: translateY(-110vh) translateX(40px); opacity: 0; }
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center; color: #fff; padding: 0 24px;
+  }
+  .hero-content > * {
+    opacity: 0;
+    animation: fadeUp 1.2s ease-out forwards;
+  }
+  .hero-tag {
+    font-size: 14px; letter-spacing: 6px; opacity: 0.85;
+    margin-bottom: 24px; font-weight: 300;
+    animation-delay: 0.2s;
+  }
+  .hero-name {
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(56px, 12vw, 120px);
+    font-weight: 900; letter-spacing: 12px;
+    line-height: 1.1; margin-bottom: 8px;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.4);
+    animation-delay: 0.5s;
+  }
+  .hero-name-mn {
+    font-family: 'Noto Sans Mongolian', 'Mongolian Baiti', serif;
+    font-size: clamp(18px, 3vw, 30px);
+    letter-spacing: 4px; opacity: 0.9; margin-bottom: 20px;
+    animation-delay: 0.85s;
+  }
+  .hero-sub {
+    font-size: clamp(16px, 2.5vw, 22px);
+    font-weight: 300; letter-spacing: 4px; opacity: 0.92;
+    animation-delay: 1.15s;
+  }
+  .hero-sub span { display: inline-block; margin: 0 8px; }
+  .scroll-hint {
+    position: absolute; bottom: 36px; left: 50%;
+    transform: translateX(-50%); z-index: 2;
+    color: rgba(255,255,255,0.75); font-size: 12px; letter-spacing: 3px;
+    animation: bounce 2s infinite, fadeUp 1.2s ease-out 1.5s forwards;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes bounce {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-bg, .hero-overlay, .particle, .hero-content > *, .scroll-hint {
+      animation: none !important;
+    }
+    .hero-content > *, .scroll-hint { opacity: 1; }
+  }
+
+  /* ===== Section base ===== */
+  section {
+    padding: 100px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-size: 13px; letter-spacing: 5px;
+    color: var(--sky); font-weight: 500; margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 700; color: var(--pine);
+    margin-bottom: 40px; line-height: 1.3;
+  }
+  .section-title .mn {
+    font-family: 'Noto Sans Mongolian', 'Mongolian Baiti', serif;
+    font-size: clamp(16px, 2vw, 22px);
+    color: var(--pine-light);
+    font-weight: 400; margin-top: 10px;
+  }
+
+  /* ===== About ===== */
+  .avatar-wrap {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .avatar {
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 32%;
+    border: 4px solid #fff;
+    box-shadow: 0 8px 30px rgba(27,58,47,0.18);
+    display: inline-block;
+    transition: opacity 1s ease, transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .avatar-name {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--pine); margin-top: 18px; letter-spacing: 4px;
+  }
+  .avatar-name .mn {
+    font-family: 'Noto Sans Mongolian', 'Mongolian Baiti', serif;
+    font-size: 14px; color: var(--pine-light);
+    display: block; margin-top: 4px; letter-spacing: 1px;
+  }
+  .avatar-wrap.in-view .avatar {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  body.reveal-ready .avatar {
+    opacity: 0;
+    transform: translateY(40px) scale(0.92);
+  }
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .about-text p {
+    font-size: 16px; color: var(--ink-light);
+    line-height: 1.9; margin-bottom: 18px;
+  }
+  .about-text p strong { color: var(--pine); font-weight: 600; }
+  .about-text .mn {
+    font-size: 13px; color: var(--ink-light); opacity: 0.75;
+    margin-bottom: 18px; display: block;
+  }
+  .about-photo {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(27,58,47,0.15);
+  }
+  .about-photo img {
+    width: 100%; display: block;
+    aspect-ratio: 4/5; object-fit: cover;
+  }
+  .about-photo-caption {
+    padding: 16px 20px;
+    background: #fff;
+    font-size: 14px;
+    color: var(--ink);
+    text-align: center;
+    font-family: 'Noto Serif SC', serif;
+  }
+  .about-photo-caption .mn {
+    font-size: 13px; color: var(--ink-light); margin-top: 4px;
+  }
+
+  /* ===== Gallery ===== */
+  .gallery {
+    background: var(--pine);
+    max-width: 100%;
+  }
+  .gallery-inner { max-width: 1200px; margin: 0 auto; }
+  .gallery .section-label { color: var(--amber); }
+  .gallery .section-title { color: var(--cream); }
+  .gallery .section-title .mn { color: rgba(245,241,232,0.7); }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 260px;
+    gap: 20px;
+  }
+  .gallery-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .gallery-item.wide { grid-column: span 2; }
+  .gallery-item.full { grid-column: 1 / -1; }
+  .gallery-item img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform 0.5s ease;
+  }
+  .gallery-item:hover img { transform: scale(1.05); }
+  .gallery-item .caption {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    padding: 50px 20px 14px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.75));
+    color: #fff; font-size: 14px;
+    letter-spacing: 1px;
+  }
+  .gallery-item .caption .mn {
+    font-size: 12px; opacity: 0.85; margin-top: 3px; letter-spacing: 0.5px;
+  }
+
+  /* ===== Hobbies ===== */
+  .hobbies { background: var(--cream); }
+  .hobby-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .hobby-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 20px rgba(27,58,47,0.06);
+  }
+  .hobby-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(27,58,47,0.12);
+  }
+  .hobby-img {
+    width: 100%; height: 220px; object-fit: cover; display: block;
+  }
+  .hobby-body { padding: 28px; }
+  .hobby-name {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 22px; font-weight: 700; color: var(--pine);
+    margin-bottom: 4px; display: flex; align-items: center; gap: 12px;
+  }
+  .hobby-name svg { width: 26px; height: 26px; color: var(--amber); flex-shrink: 0; }
+  .hobby-name-mn {
+    font-family: 'Noto Sans Mongolian', 'Mongolian Baiti', serif;
+    font-size: 15px; color: var(--pine-light);
+    margin-bottom: 10px; margin-left: 38px; display: block;
+  }
+  .hobby-desc { font-size: 15px; color: var(--ink-light); line-height: 1.8; }
+
+  /* ===== 我的小城·海拉尔 ===== */
+  .city { background: var(--cream-dark); }
+  .city-intro {
+    color: var(--ink-light); font-size: 16px;
+    max-width: 680px; margin: -10px auto 40px; line-height: 1.9;
+  }
+  .city-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .city-item {
+    position: relative; border-radius: 14px; overflow: hidden;
+    box-shadow: 0 4px 20px rgba(27,58,47,0.1);
+  }
+  .city-item.wide { grid-column: span 2; }
+  .city-item img {
+    width: 100%; height: 260px; object-fit: cover; display: block;
+    transition: transform 0.5s ease;
+  }
+  .city-item:hover img { transform: scale(1.05); }
+  .city-item .caption {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    padding: 40px 16px 12px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.72));
+    color: #fff; font-size: 14px; letter-spacing: 1px;
+  }
+  .city-item .caption .mn {
+    display: block; font-family: 'Noto Sans Mongolian', 'Mongolian Baiti', serif;
+    font-size: 12px; opacity: 0.8; margin-top: 3px; letter-spacing: 0.5px;
+  }
+
+  /* ===== 生活日记 ===== */
+  .diary { background: var(--cream-dark); }
+  .diary-intro {
+    color: var(--ink-light); font-size: 16px;
+    max-width: 620px; margin: -20px 0 40px; line-height: 1.9;
+  }
+  .diary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .diary-item {
+    position: relative; border-radius: 12px; overflow: hidden;
+    box-shadow: 0 4px 20px rgba(27,58,47,0.1);
+  }
+  .diary-item img {
+    width: 100%; height: 240px; object-fit: cover; display: block;
+    transition: transform 0.5s ease;
+  }
+  .diary-item:hover img { transform: scale(1.05); }
+  .diary-item .caption {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    padding: 40px 16px 12px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    color: #fff; font-size: 13px; letter-spacing: 1px;
+  }
+  .diary-item .caption .date {
+    display: block; font-size: 11px; opacity: 0.8; margin-bottom: 2px;
+    letter-spacing: 1px;
+  }
+  .diary-placeholder {
+    grid-column: 1 / -1;
+    text-align: center; padding: 60px 20px;
+    border: 2px dashed rgba(27,58,47,0.2); border-radius: 16px;
+    color: var(--ink-light); font-size: 15px; letter-spacing: 1px;
+  }
+
+  /* ===== Footer ===== */
+  footer {
+    background: var(--pine);
+    text-align: center;
+    padding: 70px 24px;
+  }
+  .footer-line {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 22px; color: var(--cream);
+    margin-bottom: 6px; letter-spacing: 2px;
+  }
+  .footer-line-mn {
+    font-family: 'Noto Sans Mongolian', 'Mongolian Baiti', serif;
+    font-size: 15px; color: rgba(245,241,232,0.65);
+    margin-bottom: 14px; letter-spacing: 1px;
+  }
+  .footer-sub {
+    font-size: 13px; color: rgba(245,241,232,0.55);
+    letter-spacing: 3px;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 900px) {
+    .gallery-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 220px; }
+    .gallery-item.wide, .gallery-item.full { grid-column: span 2; }
+  }
+  @media (max-width: 768px) {
+    section { padding: 70px 20px; }
+    .about-inner { grid-template-columns: 1fr; gap: 40px; }
+    .hobby-grid { grid-template-columns: 1fr; }
+    .hobby-img { height: 200px; }
+        .diary-grid { grid-template-columns: 1fr; }
+        .city-grid { grid-template-columns: 1fr; }
+        .city-item.wide { grid-column: span 1; }
+    .hero-name { letter-spacing: 6px; }
+  }
+  @media (max-width: 560px) {
+    .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 200px; }
+    .gallery-item.wide, .gallery-item.full { grid-column: span 1; }
+  }
+
+  /* ===== 润色：滚动显现 ===== */
+  .reveal { opacity: 0; transform: translateY(26px);
+    transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.22,1,0.36,1); }
+  .reveal.in-view { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1 !important; transform: none !important; transition: none; }
+  }
+  /* 回到顶部 */
+  .back-top {
+    position: fixed; right: 28px; bottom: 28px; z-index: 50;
+    width: 46px; height: 46px; border-radius: 50%;
+    background: var(--pine); color: var(--cream);
+    display: flex; align-items: center; justify-content:center;
+    cursor: pointer; opacity: 0; pointer-events: none;
+    transform: translateY(12px); transition: opacity .4s, transform .4s;
+    box-shadow: 0 6px 20px rgba(27,58,47,0.3); border: none;
+  }
+  .back-top.show { opacity: 1; pointer-events: auto; transform: none; }
+  .back-top:hover { background: var(--pine-light); }
+  .back-top svg { width: 20px; height: 20px; }
+</style>
+</head>
+<body>
+
+<!-- ===== 开场动画 ===== -->
+<div class="intro-overlay" id="introOverlay">
+  <video id="introVideo" src="assets/intro.mp4" muted playsinline preload="auto"></video>
+  <button class="intro-skip" id="introSkip">跳过</button>
+</div>
+<script>
+  (function(){
+    var overlay = document.getElementById('introOverlay');
+    var video = document.getElementById('introVideo');
+    var skip = document.getElementById('introSkip');
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var closed = false;
+    function close(){
+      if(closed) return; closed = true;
+      overlay.classList.add('done');
+      setTimeout(function(){ if(overlay.parentNode) overlay.parentNode.removeChild(overlay); }, 1200);
+    }
+    if(reduced){ overlay.parentNode.removeChild(overlay); return; }
+    skip.addEventListener('click', close);
+    video.addEventListener('ended', close);
+    var p = video.play();
+    if(p && p.catch){ p.catch(function(){ setTimeout(close, 3200); }); }
+    setTimeout(close, 5500);
+  })();
+</script>
+
+<!-- ===== Hero ===== -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="particles" id="particles"></div>
+  <div class="hero-content">
+    <div class="hero-tag">PERSONAL PROFILE</div>
+    <h1 class="hero-name">刘俊儒</h1>
+    <div class="hero-name-mn">ᠯᠢᠦ ᠵᠢᠦᠨ ᠴᠦ</div>
+    <div class="hero-sub">
+      <span>呼伦贝尔<span class="mn" style="font-size:0.65em;">ᠬᠥᠯᠦᠨ ᠪᠢᠢᠷ</span></span>·<span>草原之子<span class="mn" style="font-size:0.65em;">ᠲᠠᠯᠠ ᠢᠨ ᠬᠦᠦ</span></span>
+    </div>
+  </div>
+  <div class="scroll-hint">向下滚动<span class="mn" style="font-size:0.85em; margin-top:2px;">ᠳᠤᠪᠲᠠᠭᠠᠷᠠᠬᠤ</span></div>
+</div>
+<script>
+  // 生成金色漂浮光斑
+  (function(){
+    var box = document.getElementById('particles');
+    if(!box) return;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduced) return;
+    for(var i=0;i<14;i++){
+      var p = document.createElement('span');
+      p.className = 'particle';
+      var size = 2 + Math.random()*4;
+      p.style.left = (Math.random()*100) + '%';
+      p.style.width = size+'px';
+      p.style.height = size+'px';
+      p.style.animationDuration = (9 + Math.random()*12) + 's';
+      p.style.animationDelay = (Math.random()*10) + 's';
+      p.style.opacity = 0.4 + Math.random()*0.5;
+      box.appendChild(p);
+    }
+  })();
+</script>
+<script>
+  // 头像进入视口时的出场动画
+  (function(){
+    var el = document.querySelector('.avatar-wrap');
+    if(!el) return;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduced || !('IntersectionObserver' in window)) return;
+    document.body.classList.add('reveal-ready');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          el.classList.add('in-view');
+          io.unobserve(el);
+        }
+      });
+    }, { threshold: 0.3 });
+    io.observe(el);
+  })();
+</script>
+
+<!-- ===== 关于我 ===== -->
+<section class="about">
+  <div class="section-label">ABOUT ME</div>
+  <h2 class="section-title">
+    来自呼伦贝尔的草原与远方
+    <span class="mn">ᠬᠥᠯᠦᠨ ᠪᠢᠢᠷ ᠡᠴᠡ ᠢᠷᠡᠭᠰᠡᠨ ᠲᠠᠯᠠ ᠪᠤᠯᠤᠨ ᠴᠢᠭᠡᠯᠡᠰᠦ</span>
+  </h2>
+  <div class="avatar-wrap">
+    <img class="avatar" src="assets/avatar.jpg" alt="刘俊儒头像">
+  <div class="avatar-name">刘俊儒<span class="mn">ᠯᠢᠦ ᠵᠢᠦᠨ ᠴᠦ</span></div>
+  </div>
+  <div class="about-inner">
+    <div class="about-text">
+      <p>你好，我是<strong>刘俊儒</strong>，今年<strong>18 岁</strong>，出生并成长于内蒙古呼伦贝尔海拉尔——那片中国北方最辽阔草原上的一座小城。</p>
+      <span class="mn">ᠰᠠᠢᠨ ᠪᠠᠢᠨᠠ ᠤᠤ? ᠪᠢ 18 ᠨᠠᠰᠲᠠᠢ ᠯᠢᠦ ᠵᠢᠦᠨ ᠴᠦ, ᠬᠥᠯᠦᠨ ᠪᠢᠢᠷ ᠢᠨ ᠬᠠᠢᠯᠠᠷ ᠬᠣᠲᠠᠨ ᠳᠤ ᠲᠥᠷᠥᠭᠡᠳ ᠥᠰᠭᠡᠭᠰᠡᠨ.</span>
+      <p>性格上，我是那种既带着草原人的爽朗与直爽，又对新鲜事物始终保持好奇的人。平日里话不算多，但聊起游泳、电竞和音乐就会停不下来；做事喜欢慢慢来、一点点磨，不急于求成。</p>
+      <span class="mn">ᠠᠮᠢᠳᠤᠷᠠᠯ ᠳᠤ ᠲᠠᠯᠠ ᠢᠨ ᠰᠡᠷᠦᠭᠦᠨ, ᠰᠢᠠᠮᠠᠭ ᠵᠦᠢᠯ ᠢᠢᠨ ᠲᠣᠬᠣᠢ ᠳᠤ ᠰᠢᠨᠡ ᠰᠡᠳᠭᠢᠯ ᠲᠡᠢ.</span>
+      <p>蓝天白云、风吹草低、蒙古包的炊烟，是我从小到大的日常。穿上蒙古袍站在木栅栏前望出去的那一刻，风里全是自由的味道。</p>
+      <span class="mn">ᠬᠥᠬᠡ ᠴᠡᠭᠷ, ᠨᠢᠪᠤᠭᠤᠨ ᠡᠷᠭᠢᠬᠦ, ᠭᠡᠷ ᠢᠨ ᠠᠭᠤᠯᠭ᠎ᠠ ᠮᠢᠨᠤ ᠨᠠᠰᠠᠨ ᠪᠠᠢᠳᠠᠯ.</span>
+      <p>草原教会我开阔与坚韧，也让我始终相信：<strong>心有旷野，何处不是远方</strong>。</p>
+      <span class="mn">ᠲᠠᠯᠠ ᠨᠠᠳᠤᠷ ᠡᠷᠳᠡᠮᠵᠢᠯ ᠭᠠᠷᠭᠠᠭᠰᠠᠨ; ᠲᠠᠯᠠ ᠰᠠᠷᠠᠭᠤᠯᠵᠤ ᠬᠤᠰᠤᠭ ᠪᠤᠯᠪᠠᠯ ᠴᠢᠭᠡᠯᠡᠰᠦ ᠪᠤᠯᠪᠠ.</span>
+      <p>走出草原之后，我在热爱中继续探索生活——在泳池里感受水流的包裹与自由，在电竞赛场体验策略与团队的默契，在音乐里找回内心的平静。</p>
+      <span class="mn">ᠲᠠᠯᠠ ᠡᠴᠡ ᠭᠠᠷᠴ ᠢᠷᠡᠭᠡᠳ ᠲᠠᠮᠢᠷ, ᠲᠠᠷᠢᠶ᠎ᠠ, ᠠᠭᠤᠯᠭ᠎ᠠ ᠲᠤ ᠠᠮᠢᠳᠤᠷᠠᠯ ᠢᠨ ᠬᠤᠢᠷᠠᠭ ᠡᠷᠢᠨ᠎ᠡ.</span>
+    </div>
+    <div class="about-photo">
+      <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/G7E1br3rSo2YcvxKBiMcPJ0sncf" alt="身着蒙古袍">
+      <div class="about-photo-caption">
+        身着蒙古袍，望向草原的方向
+        <span class="mn">ᠪᠤᠷᠢᠶᠠᠳ ᠪᠤᠤᠯᠭᠠ ᠣᠮᠰᠢᠭᠠᠳ ᠲᠠᠯᠠ ᠷᠤᠭᠤ ᠬᠠᠷᠠᠭᠰᠠᠨ</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 我的家乡 ===== -->
+<section class="gallery">
+  <div class="gallery-inner">
+    <div class="section-label">MY HOMETOWN</div>
+    <h2 class="section-title">
+      我的家乡呼伦贝尔，每一帧都是热爱
+      <span class="mn">ᠮᠢᠨᠤ ᠨᠤᠲᠤᠭ ᠬᠥᠯᠦᠨ ᠪᠢᠢᠷ, ᠵᠤᠷᠪᠠᠯ ᠪᠤᠷ ᠬᠠᠢᠷ</span>
+    </h2>
+    <div class="gallery-grid">
+
+      <div class="gallery-item wide">
+        <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/MiPgbIxc6oDZMJx5krhcOrNcnAh" alt="那达慕大会">
+        <div class="caption">那达慕盛会 · 草原上的盛大节日<span class="mn">ᠨᠠᠭᠠᠳᠤᠮ · ᠲᠠᠯᠠ ᠳᠠᠬᠢ ᠶᠡᠬᠡ ᠹᠠᠷᠴᠠᠭ</span></div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/Nu2OblEKXo0QjVx8pO9cxLhhnRh" alt="蒙古包">
+        <div class="caption">草原上的蒙古包<span class="mn">ᠲᠠᠯᠠ ᠳᠠᠬᠢ ᠭᠡᠷ</span></div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/ZmrqbJR8toxKCFxYqMnckZZWnjN" alt="林间步道">
+        <div class="caption">林间步道 · 云破光来<span class="mn">ᠣᠢ ᠳᠤᠬᠢ ᠵᠠᠮ · ᠴᠡᠭᠷ ᠡᠴᠡ ᠭᠡᠷᠡᠯ</span></div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/MyYkbX3HgoSW2nxtOcTcvyytn7b" alt="草原日落">
+        <div class="caption">草原日落<span class="mn">ᠲᠠᠯᠠ ᠢᠨ ᠨᠠᠷᠠᠨ ᠣᠷᠭᠤᠬᠤ</span></div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/PXdObFq1Oo9aQkxwhxicik9pnwQ" alt="俯瞰城市">
+        <div class="caption">登顶远眺 · 城市与草原相接<span class="mn">ᠥᠨᠳᠥᠷ ᠥᠷᠭᠡᠮᠵᠢᠯ · ᠬᠣᠲ᠎ᠠ ᠲᠠᠯᠠ ᠬᠣᠯᠪᠣᠭᠳᠠᠨ᠎ᠠ</span></div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/X58VbjiFyo5b8jxh1PCcnzV7nsg" alt="城市清晨">
+        <div class="caption">家乡的清晨街景<span class="mn">ᠨᠤᠲᠤᠭ ᠢᠨ ᠤᠶᠠᠩᠭᠢ ᠵᠠᠮ</span></div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/X1MKbwil3oyQrixXVZqch310nCd" alt="布里亚特包子">
+        <div class="caption">家的味道 · 热腾腾的布里亚特包子<span class="mn">ᠭᠡᠷ ᠢᠨ ᠠᠮᠢᠷ · ᠪᠤᠷᠢᠶᠠᠳ ᠪᠤᠤᠽ</span></div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/ZM7kbJy6hosby2xxaKJcQJeknxf" alt="烤全羊">
+        <div class="caption">草原盛宴 · 外酥里嫩的烤全羊<span class="mn">ᠲᠠᠯᠠ ᠢᠨ ᠰᠢᠳᠦᠷᠭᠢ · ᠬᠤᠷᠢᠮᠠᠭᠰᠠᠨ ᠬᠣᠢᠮᠤ</span></div>
+      </div>
+
+      <div class="gallery-item full">
+        <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/Eyktbvk53oNUWjxgWTEcuYeBnre" alt="草原黄昏">
+        <div class="caption">草原黄昏 · 蒙古包前的落日<span class="mn">ᠲᠠᠯᠠ ᠢᠨ ᠦᠪᠡᠯᠵᠢᠯ · ᠭᠡᠷ ᠢᠨ ᠡᠮᠦᠨ᠎ᠡ ᠨᠠᠷᠠᠨ</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== 我的小城·海拉尔 ===== -->
+<section class="city">
+  <div class="section-label">MY CITY</div>
+  <h2 class="section-title">
+    我的小城 · 海拉尔
+    <span class="mn">ᠮᠢᠨᠤ ᠵᠢᠭᠠᠬᠠᠨ ᠬᠣᠲᠠ · ᠬᠠᠢᠯᠠᠷ</span>
+  </h2>
+  <p class="city-intro">海拉尔是呼伦贝尔市的首府，也是我从小到大生活的小城。海拉尔河从城边缓缓蜿蜒流过，成吉思汗广场的石柱是老城的地标，夏天满城樟子松的清香，冬天是齐膝的白雪。这是一座把草原的开阔与人间的烟火气，轻轻揉在一起的北方小城。</p>
+  <div class="city-grid">
+
+    <div class="city-item wide">
+      <img src="assets/hailar_1.jpg" alt="海拉尔河秋日">
+      <div class="caption">海拉尔河 · 秋日蜿蜒穿城<span class="mn">ᠬᠠᠢᠯᠠᠷ ᠭᠣᠣᠯ · ᠨᠠᠮᠠᠷ</span></div>
+    </div>
+
+    <div class="city-item">
+      <img src="assets/hailar_3.jpg" alt="成吉思汗广场">
+      <div class="caption">成吉思汗广场 · 老城地标<span class="mn">ᠴᠢᠩᠭᠢᠰ ᠬᠠᠭᠠᠨ ᠴᠢᠳᠪᠤᠯᠠᠩ</span></div>
+    </div>
+
+    <div class="city-item">
+      <img src="assets/hailar_4.jpg" alt="海拉尔站">
+      <div class="caption">海拉尔站 · 蒙古包穹顶<span class="mn">ᠬᠠᠢᠯᠠᠷ ᠥᠷᠲᠡᠭᠡ</span></div>
+    </div>
+
+    <div class="city-item">
+      <img src="assets/hailar_5.jpg" alt="城市街景">
+      <div class="caption">晴朗的城市街景<span class="mn">ᠬᠣᠲᠠ ᠵᠠᠮ</span></div>
+    </div>
+
+    <div class="city-item wide">
+      <img src="assets/hailar_2.jpg" alt="海拉尔河夜景">
+      <div class="caption">河上夜色 · 灯火映在水面<span class="mn">ᠭᠣᠣᠯ ᠢᠨ ᠰᠢᠨᠡ</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== 我的爱好 ===== -->
+<section class="hobbies">
+  <div class="section-label">MY HOBBIES</div>
+  <h2 class="section-title">
+    热爱，让生活总有新的期待
+    <span class="mn">ᠬᠠᠢᠷ ᠬᠣᠢᠮᠣᠭ ᠰᠢᠨᠡ ᠬᠤᠯᠡᠭᠡ ᠪᠤᠯᠪᠠ</span>
+  </h2>
+  <div class="hobby-grid">
+
+    <div class="hobby-card">
+      <img class="hobby-img" src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/CgDBbHbvGoy8K5xnj91cVvm7nxc" alt="游泳">
+      <div class="hobby-body">
+        <div class="hobby-name">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 18c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2"/>
+            <circle cx="16" cy="6" r="2"/>
+            <path d="M14 8l-4 4 3 3 4-4"/>
+          </svg>
+          游泳
+        </div>
+        <span class="hobby-name-mn">ᠤᠪᠰᠤᠨ ᠳᠡᠪᠰᠡᠬᠦ</span>
+        <p class="hobby-desc">游泳是我发自内心的喜欢。游泳是我主动爱上的一个运动，从最初的以"减肥"为目的，到真正的爱上游泳，我从抖音等网络平台上一点点看游泳基础教学、换气训练、泳姿的动作，坚持一点一点自学，最终算得上了入门，领悟了蛙泳。再到自由泳的二打腿、高肘抱水、换气、走水，最后蝶泳等等。我真正的爱上了这门运动。在水中挣脱重力的束缚，从一开始的呛水，再到换气的熟练，再到泳姿的练习，每一步都坚持训练，不急于求成。游泳教会了我静心感受，感受水流的波动，感受每一次的换气节奏。</p>
+        <span class="mn" style="font-size:12px; color:var(--ink-light); margin-top:10px; display:block; opacity:0.75;">ᠤᠪᠰᠤᠨ ᠳᠡᠪᠰᠡᠬᠦ ᠪᠢ ᠥᠪᠡᠷᠲᠡ ᠳᠤᠰᠢᠶᠠᠨ ᠬᠠᠢᠷᠯᠠᠭᠰᠠᠨ; ᠲᠡᠢᠯᠪᠡᠷᠢ ᠲᠡᠢᠯᠪᠡᠷᠢ ᠪᠣᠯᠭᠠᠭᠰᠠᠨ ᠡᠦᠬᠢᠯᠡᠯ ᠡᠴᠡ ᠡᠭᠴᠡ ᠪᠣᠯᠪᠠᠯ ᠮᠡᠳᠡᠭ ᠤᠭᠠᠭᠤ ᠲᠠᠮᠢᠷ.</span>
+      </div>
+    </div>
+
+    <div class="hobby-card">
+      <img class="hobby-img" src="assets/esports.jpg" alt="电竞">
+      <div class="hobby-body">
+        <div class="hobby-name">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="6" width="20" height="12" rx="2"/>
+            <path d="M6 12h4M8 10v4"/>
+            <circle cx="16" cy="11" r="0.5"/>
+            <circle cx="18.5" cy="13" r="0.5"/>
+          </svg>
+          电竞
+        </div>
+        <span class="hobby-name-mn">ᠡ᠋ᠯᠡᠭᠲᠤᠷᠨᠢ ᠲᠠᠷᠢᠶ᠎ᠠ</span>
+        <p class="hobby-desc">不只是游戏，更是策略、反应与团队协作的综合竞技。和队友并肩作战、逆风翻盘的时刻，是屏幕外感受不到的热血与默契。</p>
+      </div>
+    </div>
+
+    <div class="hobby-card">
+      <img class="hobby-img" src="assets/music.jpg" alt="音乐">
+      <div class="hobby-body">
+        <div class="hobby-name">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18V5l12-2v13"/>
+            <circle cx="6" cy="18" r="3"/>
+            <circle cx="18" cy="16" r="3"/>
+          </svg>
+          音乐
+        </div>
+        <span class="hobby-name-mn">ᠠᠭᠤᠯᠭ᠎ᠠ</span>
+        <p class="hobby-desc">一副耳机，一个世界。从民谣到摇滚，从古典到电子，音乐是我情绪的出口，也是独处时最忠实的陪伴。在日常生活中，或者学习之余，我保持着对音乐的浓厚兴趣。长期的音乐欣赏习惯，不仅培养了我的音乐天赋，而且更让我学会了专注与倾听。最初因为小时候母亲带我学钢琴，我对音乐就有了独到的见解，每一个音符、每个曲调，我都可以用弹唱的方式演奏出来。在这个快时代快节奏的生活中，音乐是我保持心态平和、激发创造力的重要方式。对我而言，音乐是无声世界的语言，也是我表达自我、感知世界最直接的窗口。</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== 生活日记 ===== -->
+<section class="diary">
+  <div class="section-label">LIFE DIARY</div>
+  <h2 class="section-title">
+    生活日记
+    <span class="mn">ᠠᠮᠢᠳᠤᠷᠠᠯ ᠤᠨ ᠳᠡᠮᠳᠡᠭᠯᠡᠯ</span>
+  </h2>
+  <p class="diary-intro">记录日常里那些闪光的小片段——一段路、一顿饭、一场比赛、一首歌，都是生活留给我的注脚。</p>
+  <div class="diary-grid">
+    <div class="diary-item">
+      <img src="assets/diary_01.jpg" alt="生活片段 1">
+      <div class="caption"><span class="date">登塔</span>风声穿过层层飞檐，抬头是压得很低的云</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_02.jpg" alt="生活片段 2">
+      <div class="caption"><span class="date">夜航</span>舷窗之外，是整座城市的万家灯火</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_03.jpg" alt="生活片段 3">
+      <div class="caption"><span class="date">故宫</span>红墙黄瓦，六百年的时光就踩在脚下</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_04.jpg" alt="生活片段 4">
+      <div class="caption"><span class="date">草原</span>策马而行，与风并肩</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_05.jpg" alt="生活片段 5">
+      <div class="caption"><span class="date">开黑</span>和兄弟一起，坐进熟悉的那个包厢</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_06.jpg" alt="生活片段 6">
+      <div class="caption"><span class="date">海边</span>落日把沙滩上的影子拉得很长</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_07.jpg" alt="生活片段 7">
+      <div class="caption"><span class="date">特写</span>黑白镜头里，一个不说话的自己</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_08.jpg" alt="生活片段 8">
+      <div class="caption"><span class="date">故宫</span>人潮里举着手机，和太和殿合一张影</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_09.jpg" alt="生活片段 9">
+      <div class="caption"><span class="date">三亚</span>椰树成行，海风从街角吹过来</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_10.jpg" alt="生活片段 10">
+      <div class="caption"><span class="date">电竞</span>一局碾压局，MVP 是对队友最好的交代</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_11.jpg" alt="生活片段 11">
+      <div class="caption"><span class="date">故宫</span>太和门前，天高地阔，人来人往</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_12.jpg" alt="生活片段 12">
+      <div class="caption"><span class="date">日常</span>镜子里那个刚睡醒的下午</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_13.jpg" alt="生活片段 13">
+      <div class="caption"><span class="date">冬夜</span>凭栏远眺，远处的灯火亮得很温柔</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_14.jpg" alt="生活片段 14">
+      <div class="caption"><span class="date">沙滩</span>积云像一座山，慢慢压过海平线</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_15.jpg" alt="生活片段 15">
+      <div class="caption"><span class="date">2023.08</span>那年夏天，月亮之上，自由飞翔</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_16.jpg" alt="生活片段 16">
+      <div class="caption"><span class="date">夜晚</span>昏暗灯光下，和兄弟挤在一张镜头里</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_17.jpg" alt="生活片段 17">
+      <div class="caption"><span class="date">故宫</span>红墙夹道，抬头只剩一线天</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_18.jpg" alt="生活片段 18">
+      <div class="caption"><span class="date">海边</span>凭海临风，看桥、看船、看云</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_19.jpg" alt="生活片段 19">
+      <div class="caption"><span class="date">毕业</span>毕业那天，把向日葵献给老师</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_20.jpg" alt="生活片段 20">
+      <div class="caption"><span class="date">正装</span>第一次穿西装，和兄弟认真合张影</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_21.jpg" alt="生活片段 21">
+      <div class="caption"><span class="date">约会</span>在漂亮的餐厅里，比一个耶</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_22.jpg" alt="生活片段 22">
+      <div class="caption"><span class="date">暮色</span>天暗下来，沙滩慢慢安静</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_23.jpg" alt="生活片段 23">
+      <div class="caption"><span class="date">聚餐</span>兄弟们的大圆桌，一年比一年齐</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_24.jpg" alt="生活片段 24">
+      <div class="caption"><span class="date">抵达</span>夜抵三亚，红色三个字亮起来</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_25.jpg" alt="生活片段 25">
+      <div class="caption"><span class="date">班级</span>黑板上画一张中国地图，写下想去的远方</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_26.jpg" alt="生活片段 26">
+      <div class="caption"><span class="date">故宫</span>飞檐之上，是北京最蓝的那片天</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_27.jpg" alt="生活片段 27">
+      <div class="caption"><span class="date">北海</span>白塔立在岛上，天蓝得不像话</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_28.jpg" alt="生活片段 28">
+      <div class="caption"><span class="date">正装</span>三个穿西装的少年，对着镜头</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_29.jpg" alt="生活片段 29">
+      <div class="caption"><span class="date">海湾</span>那片海，蓝得像一块掉进山里的宝石</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_30.jpg" alt="生活片段 30">
+      <div class="caption"><span class="date">雪夜</span>路灯下雪粒纷飞，一个人慢慢走</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_31.jpg" alt="生活片段 31">
+      <div class="caption"><span class="date">出发</span>登机口 B20，飞往三亚的清晨</div>
+    </div>
+    <div class="diary-item">
+      <img src="assets/diary_32.jpg" alt="生活片段 32">
+      <div class="caption"><span class="date">海鲜</span>一桌螃蟹，是海边最实在的问候</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="footer-line">心有旷野，何处不是远方</div>
+  <div class="footer-line-mn">ᠲᠠᠯᠠ ᠰᠠᠷᠠᠭᠤᠯᠵᠤ ᠬᠤᠰᠤᠭ ᠪᠤᠯᠪᠠᠯ ᠴᠢᠭᠡᠯᠡᠰᠦ ᠪᠤᠯᠪᠠ</div>
+  <div class="footer-sub">刘俊儒 · 呼伦贝尔 · ᠯᠢᠦ ᠵᠢᠦᠨ ᠴᠦ · ᠬᠥᠯᠦᠨ ᠪᠢᠢᠷ</div>
+</footer>
+
+<button class="back-top" id="backTop" aria-label="回到顶部">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+<script>
+  (function(){
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // 给需要显现的元素加 .reveal
+    var targets = document.querySelectorAll('.hobby-card, .diary-item, .gallery-item, .city-item, .about-text, .about-photo');
+    if(!reduced && 'IntersectionObserver' in window){
+      targets.forEach(function(el, i){
+        el.classList.add('reveal');
+        el.style.transitionDelay = ((i % 3) * 0.08) + 's';
+      });
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12 });
+      targets.forEach(function(el){ io.observe(el); });
+    }
+    // 回到顶部
+    var btn = document.getElementById('backTop');
+    window.addEventListener('scroll', function(){
+      if(window.scrollY > 600){ btn.classList.add('show'); }
+      else { btn.classList.remove('show'); }
+    }, { passive: true });
+    btn.addEventListener('click', function(){ window.scrollTo({ top:0, behavior:'smooth' }); });
+  })();
+</script>
+</body>
+</html>
